@@ -1,0 +1,9 @@
+# Drop Kris’s photos here (webp preferred)
+
+Suggested files:
+- kris-hero.webp
+- kris-about.webp
+- kris-speaking.webp
+- kris-lifestyle.webp
+
+Then update PhotoOfKris `src` props on each page.

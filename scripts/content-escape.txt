@@ -1,0 +1,11 @@
+13:     detail:
+14:       "Your cells can only perform as well as they are nourished. We establish the foundational nutrition, hydration, rest, and lifestyle habits that create the conditions for lasting vitality, not quick fixes, but sustainable fuel for every system in your body.",
+22:     detail:
+31:     detail:
+40:     detail:
+49:   "Boosts vitality and overall wellness",
+88:     detail:
+89:       "Book Kris for conferences, summits, faith gatherings, and wellness events. Her talks focus on personal empowerment, vitality after 40, overcoming challenges, and becoming your own best health advocate, with a message that moves hearts and sparks action.",
+95:     detail:
+96:       "Personalized guidance for ambitious people ready to reclaim their vitality. Through compassionate coaching rooted in 33+ years of nursing, Kris helps you move from confusion to clarity, and from surviving to truly thriving.",
+102:     detail:
