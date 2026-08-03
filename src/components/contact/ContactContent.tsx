@@ -23,25 +23,37 @@ export function ContactContent() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    const name = String(data.get("name") ?? "");
+    const email = String(data.get("email") ?? "");
+    const interest = String(data.get("interest") ?? "discovery");
+    const message = String(data.get("message") ?? "");
+
     try {
-      const res = await fetch("/api/contact", {
+      // Post straight to Formspree — required for static GitHub Pages (no /api routes)
+      const res = await fetch("https://formspree.io/f/mzdnnrpz", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          name: String(data.get("name") ?? ""),
-          email: String(data.get("email") ?? ""),
-          interest: String(data.get("interest") ?? "discovery"),
-          message: String(data.get("message") ?? ""),
+          name,
+          email,
+          interest,
+          message,
+          _subject: `Website contact: ${interest} — ${name}`,
         }),
       });
 
       const payload = (await res.json().catch(() => ({}))) as {
         error?: string;
+        errors?: Array<{ message?: string }>;
       };
 
       if (!res.ok) {
         setError(
           payload.error ||
+            payload.errors?.[0]?.message ||
             "Could not send your message. Please try again or book a call."
         );
         return;
