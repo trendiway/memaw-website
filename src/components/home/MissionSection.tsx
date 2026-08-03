@@ -36,7 +36,7 @@ export function MissionSection() {
               style={{ borderColor: "#d67c8c" }}
             >
               <Image
-                src="/images/aboutheadshot.jpeg"
+                src="/memaw-website/images/aboutheadshot.jpeg"
                 alt="Kris Hapgood, RN, BSN"
                 fill
                 sizes="(max-width: 1024px) 100vw, 20rem"

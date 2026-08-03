@@ -171,7 +171,7 @@ export function HeroSection() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/images/68ab0a7c39499f61606f449e.jpeg"
+              src="/memaw-website/images/68ab0a7c39499f61606f449e.jpeg"
               alt="Kris Hapgood, RN, BSN"
               style={{
                 position: "absolute",

@@ -56,7 +56,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.1} direction="left">
             <PhotoOfKris
-              src="/images/IMG_3018.jpeg"
+              src="/memaw-website/images/IMG_3018.jpeg"
               label="about portrait"
               alt="Kris Hapgood, RN, BSN"
               aspect="portrait"
@@ -120,7 +120,7 @@ export default function AboutPage() {
         <div className="relative z-10 mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:px-10">
           <Reveal>
             <PhotoOfKris
-              src="/images/IMG_7181.jpeg"
+              src="/memaw-website/images/IMG_7181.jpeg"
               label="speaking or lifestyle"
               alt="Kris Hapgood speaking and serving"
               aspect="square"
