@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { DnaBackground } from "@/components/DnaBackground";
 import { Button } from "@/components/ui/Button";
@@ -11,62 +11,34 @@ const fieldClasses =
   "w-full rounded-2xl border border-pink/20 bg-white/80 px-4 py-3 text-sm text-ink outline-none transition focus:border-pink focus:ring-2 focus:ring-pink/25 placeholder:text-ink-soft/60";
 
 export function ContactContent() {
-  const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(null);
-    setSending(true);
+    setStatus("loading");
 
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const interest = String(data.get("interest") ?? "discovery");
-    const message = String(data.get("message") ?? "");
-
     try {
-      // Post straight to Formspree — required for static GitHub Pages (no /api routes)
       const res = await fetch("https://formspree.io/f/mzdnnrpz", {
         method: "POST",
+        body: data,
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name,
-          email,
-          interest,
-          message,
-          _subject: `Website contact: ${interest} — ${name}`,
-        }),
       });
 
-      const payload = (await res.json().catch(() => ({}))) as {
-        error?: string;
-        errors?: Array<{ message?: string }>;
-      };
-
-      if (!res.ok) {
-        setError(
-          payload.error ||
-            payload.errors?.[0]?.message ||
-            "Could not send your message. Please try again or book a call."
-        );
-        return;
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
       }
-
-      setSubmitted(true);
-      form.reset();
     } catch {
-      setError(
-        "Could not send your message. Please check your connection or book a call."
-      );
-    } finally {
-      setSending(false);
+      setStatus("error");
     }
   };
 
@@ -101,7 +73,7 @@ export function ContactContent() {
               <h2 className="heading-display text-2xl font-semibold text-teal">
                 Send a Message
               </h2>
-              {submitted ? (
+              {status === "success" ? (
                 <div className="mt-8 flex flex-col items-center gap-4 rounded-2xl bg-blush/60 p-8 text-center">
                   <span className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-pink to-gold text-white">
                     <CheckCircle2 className="h-7 w-7" />
@@ -125,7 +97,7 @@ export function ContactContent() {
                       id="name"
                       name="name"
                       required
-                      disabled={sending}
+                      disabled={status === "loading"}
                       className={fieldClasses}
                     />
                   </div>
@@ -141,7 +113,7 @@ export function ContactContent() {
                       name="email"
                       type="email"
                       required
-                      disabled={sending}
+                      disabled={status === "loading"}
                       className={fieldClasses}
                     />
                   </div>
@@ -157,7 +129,7 @@ export function ContactContent() {
                       name="interest"
                       className={fieldClasses}
                       defaultValue="discovery"
-                      disabled={sending}
+                      disabled={status === "loading"}
                     >
                       <option value="discovery">Discovery call</option>
                       <option value="speaking">Speaking</option>
@@ -179,16 +151,17 @@ export function ContactContent() {
                       name="message"
                       rows={5}
                       required
-                      disabled={sending}
+                      disabled={status === "loading"}
                       className={`${fieldClasses} resize-y`}
                     />
                   </div>
-                  {error && (
+                  {status === "error" && (
                     <p
                       role="alert"
                       className="rounded-2xl bg-pink/10 px-4 py-3 text-sm text-pink-deep"
                     >
-                      {error}
+                      Could not send your message. Please try again or book a
+                      call.
                     </p>
                   )}
                   <Button
@@ -196,9 +169,9 @@ export function ContactContent() {
                     variant="primary"
                     size="lg"
                     className="w-full sm:w-auto"
-                    disabled={sending}
+                    disabled={status === "loading"}
                   >
-                    {sending ? "Sending…" : "Send Message"}
+                    {status === "loading" ? "Sending…" : "Send Message"}
                   </Button>
                 </form>
               )}
