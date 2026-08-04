@@ -166,11 +166,11 @@ export default function AboutPage() {
               for you.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <Button href="/work-with-kris" variant="primary" size="lg">
-                More of Kris
-              </Button>
               <Button href="/fire-framework" variant="outline" size="lg">
                 Explore F.I.R.E.
+              </Button>
+              <Button href="/work-with-kris" variant="primary" size="lg">
+                More of Kris
               </Button>
             </div>
           </Reveal>
