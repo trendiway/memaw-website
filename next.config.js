@@ -4,8 +4,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   }
-    
-  assetPrefix: '/memaw-website/',
 }
 
 module.exports = nextConfig
