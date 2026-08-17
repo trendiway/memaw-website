@@ -80,11 +80,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${nunito.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen font-sans antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body className={`${fraunces.variable} ${nunito.variable} min-h-screen font-sans antialiased`}>
+  <Navbar />
+  <main>{children}</main>
+  <Footer />
+</body>
     </html>
   );
 }
