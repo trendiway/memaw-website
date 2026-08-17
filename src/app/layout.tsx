@@ -19,28 +19,6 @@ const nunito = Nunito_Sans({
   fallback: ["system-ui", "sans-serif"],
 });
 
-// Body - soft, warm, highly readable humanist sans
-// next/font self-hosts files (no fonts.googleapis.com round-trip) and
-// injects preload + @font-face with font-display: swap.
-const nunito = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-// Display - refined, feminine soft serif with character
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
