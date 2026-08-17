@@ -5,6 +5,20 @@ import { Footer } from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fraunces",
+  fallback: ["Georgia", "serif"],
+});
+
+const nunito = Nunito_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nunito",
+  fallback: ["system-ui", "sans-serif"],
+});
+
 // Body - soft, warm, highly readable humanist sans
 // next/font self-hosts files (no fonts.googleapis.com round-trip) and
 // injects preload + @font-face with font-display: swap.
