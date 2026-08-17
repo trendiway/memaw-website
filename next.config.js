@@ -3,8 +3,8 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-  },
-  basePath: '/memaw-website',
+  }
+    
   assetPrefix: '/memaw-website/',
 }
 
