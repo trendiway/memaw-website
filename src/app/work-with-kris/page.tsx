@@ -61,7 +61,7 @@ export default function WorkWithKrisPage() {
           </Reveal>
           <Reveal delay={0.1} direction="left">
             <PhotoOfKris
-              src="/memaw-website/images/IMG_2943.png"
+              src="/images/IMG_2943.png"
               label="speaking on stage"
               alt="Kris Hapgood speaking"
               aspect="wide"
@@ -191,7 +191,7 @@ export default function WorkWithKrisPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <PhotoOfKris
-                src="/memaw-website/images/gifts-of-pain-kris.png"
+                src="/images/gifts-of-pain-kris.png"
                 label="book / gifts of pain"
                 alt="Kris Hapgood with The Gifts of Pain"
                 aspect="portrait"

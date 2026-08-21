@@ -23,7 +23,7 @@ const SLOTS = [
 const SLIDES = [
   {
     id: 0,
-    src: "/memaw-website/images/x39image1of3.jpeg",
+    src: "/images/x39image1of3.jpeg",
     alt: "Kris Hapgood with LifeWave X39",
     headline: "A Breakthrough in Phototherapy",
     paragraphs: [
@@ -34,7 +34,7 @@ const SLIDES = [
   },
   {
     id: 1,
-    src: "/memaw-website/images/x39image2of3.jpeg",
+    src: "/images/x39image2of3.jpeg",
     alt: "Kris Hapgood demonstrating the X39 phototherapy patch",
     headline: "The Healing Potential of Light",
     paragraphs: [
@@ -46,7 +46,7 @@ const SLIDES = [
   },
   {
     id: 2,
-    src: "/memaw-website/images/x39image3of3.jpeg",
+    src: "/images/x39image3of3.jpeg",
     alt: "Kris Hapgood with X39 patch applied",
     headline: "Real Results. Real People.",
     paragraphs: [
