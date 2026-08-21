@@ -1,4 +1,343 @@
-@import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+﻿@import "tailwindcss";
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
+
+/*
+  Kris Hapgood RN - Design System
+  Modern feminine holistic wellness: warm blush pinks, rose gold,
+  subtle sage-teal medical accents, elegant serif display.
+*/
+
+@theme {
+  /* Warm neutral backgrounds */
+  --color-cream: #fdfaf7;
+  --color-cream-deep: #fbf4ef;
+  --color-blush: #fdf0ed;
+  --color-blush-deep: #fbe4e0;
+  --color-blush-muted: #f7ded9;
+
+  /* Feminine pink / rose - primary accents */
+  --color-pink: #e89ba8;
+  --color-pink-soft: #f2c4d0;
+  --color-pink-deep: #d67c8c;
+  --color-rose: #e89ba8;
+  --color-brand: #A05C6B;   /* matte dusty rose - hero bg, FIRE letters, section accents */
+
+  /* Rose gold / gold */
+  --color-gold: #c9a06b;
+  --color-gold-light: #dcbb8e;
+  --color-gold-deep: #b5875073;
+
+  /* Medical / holistic sage-teal accents */
+  --color-sage: #4a7c59;
+  --color-teal: #2c5f5a;
+  --color-teal-mid: #367069;
+  --color-teal-light: #4f8a82;
+
+  /* Text */
+  --color-ink: #2a2a2a;
+  --color-ink-muted: #5c5450;
+  --color-ink-soft: #8a807b;
+
+  /* Fonts */
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman",
+    serif;
+
+  /* Elegant soft shadows */
+  --shadow-soft: 0 10px 40px -18px rgba(214, 124, 140, 0.28);
+  --shadow-card: 0 18px 50px -24px rgba(150, 90, 100, 0.25);
+  --shadow-float: 0 30px 70px -30px rgba(150, 90, 100, 0.35);
+
+  /* Radii - soft modern rounding */
+  --radius-xl2: 1.75rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Homepage snap-scroll: only at viewports ≥768px (disabled on smaller screens).
+     One intentional scroll ≈ one full section. scroll-behavior: auto is
+     intentional - with mandatory snap + smooth scroll, browsers drop pointer
+     events during the snap animation (~600-900ms), making every link
+     unreliable. JS-driven scrolls (DotNav scrollIntoView with
+     behavior:'smooth') are unaffected because the explicit JS option wins. */
+  @media (min-width: 768px) {
+    html:has([data-home-snap]) {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Ensure the fixed navbar is always interactive regardless of any
+     ancestor scroll-snap or overflow context. */
+  header {
+    pointer-events: auto;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-feature-settings: "ss01", "cv01";
+    letter-spacing: 0.005em;
+  }
+
+  /*
+   * About page: one continuous cream/blush wash across header → content → footer.
+   * Painted on body so the gradient never resets at section or footer edges.
+   */
+  body:has([data-about-page]) {
+    /* Fade to same-hue 0-alpha (not keyword transparent) to avoid dark banding */
+    background:
+      radial-gradient(
+        120% 80% at 90% 8%,
+        #fbe4e0 0%,
+        rgba(251, 228, 224, 0) 50%
+      ),
+      radial-gradient(
+        90% 70% at 5% 55%,
+        rgba(242, 196, 208, 0.5) 0%,
+        rgba(242, 196, 208, 0) 55%
+      ),
+      radial-gradient(
+        80% 60% at 85% 92%,
+        rgba(251, 228, 224, 0.7) 0%,
+        rgba(251, 228, 224, 0) 50%
+      ),
+      #fdfaf7;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    color: var(--color-teal);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-pink) 45%, transparent);
+    color: var(--color-teal);
+  }
+
+  /* Elegant custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-blush);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--color-pink) 60%, var(--color-gold));
+    border-radius: 999px;
+    border: 3px solid var(--color-blush);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-pink-deep);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .heading-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Small refined eyebrow label */
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  /* Warm gradient text for key words */
+  .text-gradient-rose {
+    background: linear-gradient(
+      100deg,
+      var(--color-pink-deep),
+      var(--color-gold)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Signature soft backgrounds */
+  .bg-blush-gradient {
+    background: radial-gradient(
+        130% 90% at 80% 0%,
+        var(--color-blush-deep) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        120% 100% at 0% 100%,
+        color-mix(in srgb, var(--color-pink-soft) 40%, transparent) 0%,
+        transparent 50%
+      ),
+      var(--color-cream);
+  }
+
+  /* Fade to same-hue 0-alpha (not keyword transparent) to avoid dark seams. */
+  .bg-hero-gradient {
+    background-color: #fdfaf7;
+    background-image:
+      radial-gradient(
+        120% 120% at 90% 10%,
+        #fbe4e0 0%,
+        rgba(251, 228, 224, 0) 55%
+      ),
+      radial-gradient(
+        90% 90% at 5% 90%,
+        rgba(242, 196, 208, 0.55) 0%,
+        rgba(242, 196, 208, 0) 55%
+      );
+  }
+
+  /*
+   * F.I.R.E. + Contact: one continuous cream/blush wash on body (same approach as About)
+   * so section boundaries never repaint a separate gradient box.
+   */
+  body:has([data-fire-page]),
+  body:has([data-contact-page]) {
+    background:
+      radial-gradient(
+        120% 80% at 90% 8%,
+        #fbe4e0 0%,
+        rgba(251, 228, 224, 0) 50%
+      ),
+      radial-gradient(
+        90% 70% at 5% 55%,
+        rgba(242, 196, 208, 0.5) 0%,
+        rgba(242, 196, 208, 0) 55%
+      ),
+      radial-gradient(
+        80% 60% at 85% 92%,
+        rgba(251, 228, 224, 0.7) 0%,
+        rgba(251, 228, 224, 0) 50%
+      ),
+      #fdfaf7;
+  }
+
+  /* X39: solid teal footer - no pink/gold wash overlay */
+  body:has([data-x39-page]) .footer-wash {
+    display: none;
+  }
+
+  /*
+   * Homepage first snap (#hero) - scoped light theme matching About page top.
+   * Reverse: on HeroSection, change className from "hero-theme-about" to
+   * "hero-theme-brand" (or remove the theme class and restore previous inline colors).
+   */
+  #hero.hero-theme-about {
+    --hero-eyebrow: var(--color-pink-deep);
+    --hero-heading: var(--color-teal);
+    --hero-subtitle: var(--color-ink-muted);
+    --hero-body: var(--color-ink-muted);
+    --hero-scroll: var(--color-ink-soft);
+    --hero-scroll-icon: var(--color-pink);
+    --hero-media-bg: color-mix(in srgb, var(--color-cream) 70%, white);
+    --hero-media-border: var(--color-pink-soft);
+    --hero-media-icon-border: color-mix(
+      in srgb,
+      var(--color-pink) 35%,
+      transparent
+    );
+    --hero-media-icon-bg: color-mix(in srgb, var(--color-blush) 80%, white);
+    --hero-media-icon: var(--color-pink-deep);
+    --hero-media-text: var(--color-ink-muted);
+    --hero-media-shadow: 0 24px 60px -28px rgba(150, 90, 100, 0.28);
+    --hero-badge-bg: #ffffff;
+    --hero-badge-border: color-mix(in srgb, var(--color-pink-soft) 50%, transparent);
+    --hero-badge-text: var(--color-teal);
+    --hero-badge-shadow: 0 16px 40px -18px rgba(150, 90, 100, 0.28);
+    --hero-pulse-primary: rgba(232, 155, 168, 0.45);
+    --hero-pulse-secondary: rgba(232, 155, 168, 0.22);
+    background: radial-gradient(
+        120% 120% at 90% 10%,
+        var(--color-blush-deep) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        90% 90% at 5% 90%,
+        color-mix(in srgb, var(--color-pink-soft) 55%, transparent) 0%,
+        transparent 45%
+      ),
+      var(--color-cream);
+  }
+
+  /* Previous dark brand hero - keep for one-class revert */
+  #hero.hero-theme-brand {
+    --hero-eyebrow: #ffffff;
+    --hero-heading: #ffffff;
+    --hero-subtitle: rgba(255, 255, 255, 0.92);
+    --hero-body: #ffffff;
+    --hero-scroll: rgba(255, 255, 255, 0.55);
+    --hero-scroll-icon: rgba(242, 196, 208, 0.75);
+    --hero-media-bg: rgba(255, 255, 255, 0.1);
+    --hero-media-border: #f2c4d0;
+    --hero-media-icon-border: rgba(255, 255, 255, 0.3);
+    --hero-media-icon-bg: rgba(255, 255, 255, 0.15);
+    --hero-media-icon: rgba(255, 255, 255, 0.7);
+    --hero-media-text: rgba(255, 255, 255, 0.75);
+    --hero-media-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.45);
+    --hero-badge-bg: #ffffff;
+    --hero-badge-border: rgba(242, 196, 208, 0.5);
+    --hero-badge-text: var(--color-brand);
+    --hero-badge-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.4);
+    --hero-pulse-primary: rgba(232, 155, 168, 0.5);
+    --hero-pulse-secondary: rgba(255, 255, 255, 0.22);
+    background-color: var(--color-brand);
+    background-image: radial-gradient(
+        85% 70% at 100% 0%,
+        rgba(0, 0, 0, 0.14) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        70% 60% at 0% 100%,
+        rgba(0, 0, 0, 0.1) 0%,
+        transparent 50%
+      );
+  }
+
+  .card-elevated {
+    background: color-mix(in srgb, var(--color-cream) 92%, white);
+    box-shadow: var(--shadow-card);
+    border: 1px solid color-mix(in srgb, var(--color-pink) 16%, transparent);
+  }
+
+  /* Thin decorative divider */
+  .divider-rose {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-pink) 55%, var(--color-gold)),
+      transparent
+    );
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  .animate-float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+}
