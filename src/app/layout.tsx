@@ -5,26 +5,18 @@ import { Footer } from "@/components/layout/Footer";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-// Body - soft, warm, highly readable humanist sans
-// next/font self-hosts files (no fonts.googleapis.com round-trip) and
-// injects preload + @font-face with font-display: swap.
-const nunito = Nunito_Sans({
-  subsets: ["latin"],
-  variable: "--font-nunito",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-// Display - refined, feminine soft serif with character
 const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
   display: "swap",
-  preload: true,
-  adjustFontFallback: true,
+  variable: "--font-fraunces",
+  fallback: ["Georgia", "serif"],
+});
+
+const nunito = Nunito_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nunito",
+  fallback: ["system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -66,11 +58,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${nunito.variable} ${fraunces.variable}`}>
-      <body className="min-h-screen font-sans antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body className={`${fraunces.variable} ${nunito.variable} min-h-screen font-sans antialiased`}>
+  <Navbar />
+  <main>{children}</main>
+  <Footer />
+</body>
     </html>
   );
 }
