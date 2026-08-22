@@ -4,6 +4,11 @@
       "source": "/fire",
       "destination": "/fire-framework",
       "permanent": true
+    },
+    {
+      "source": "/x-39-testimonials",
+      "destination": "/work-with-kris",
+      "permanent": true
     }
   ]
 }
