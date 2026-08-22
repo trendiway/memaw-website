@@ -6,7 +6,7 @@
       "permanent": true
     },
     {
-      "source": "/x-39-testimonials",
+      "source": "/x39-testimonials",
       "destination": "/fire-framework",
       "permanent": true
     }
