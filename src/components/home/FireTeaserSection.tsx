@@ -135,9 +135,9 @@ export function FireTeaserSection() {
      */
     <Section
       id="fire"
-      className="bg-blush flex min-h-screen flex-col justify-center min-[768px]:snap-start min-[768px]:snap-always"
+      className="bg-blush flex min-h-screen flex-col justify-center min-[768px]:pt-20 min-[768px]:justify-start min-[768px]:snap-start min-[768px]:snap-always"
     >
-      <div className="mx-auto w-full max-w-7xl px-5 pt-12 pb-16 sm:px-8 lg:px-10">
+      <div className="mx-auto w-full max-w-7xl px-5 pt-12 pb-16 sm:px-8 lg:px-10 min-[768px]:pt-6">
 
         {/* ── Section header ── */}
         <div className="text-center">

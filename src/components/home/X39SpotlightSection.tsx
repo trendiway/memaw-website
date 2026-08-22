@@ -94,7 +94,7 @@ export function X39SpotlightSection() {
   const activeSlide = SLIDES[activeIdx];
 
   return (
-    <Section snap id="x39" className="bg-teal text-cream">
+    <Section snap id="x39" className="bg-teal text-cream min-[768px]:justify-start">
       {/* Warm feminine gradient wash over the teal */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -105,7 +105,7 @@ export function X39SpotlightSection() {
         }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-8 sm:px-8 sm:pt-10 lg:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-8 sm:px-8 sm:pt-10 lg:px-10 min-[768px]:pt-6">
         <div className="grid min-w-0 items-center gap-12 lg:grid-cols-[minmax(0,33.8rem)_minmax(0,1fr)] lg:gap-16">
 
           {/* ── Left column: X39 heading + image stack + indicator ── */}

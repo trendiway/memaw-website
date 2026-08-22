@@ -18,7 +18,7 @@ export function HeroSection() {
     <Section
       id="hero"
       snap
-      className="hero-theme-about"
+      className="hero-theme-about min-[768px]:pt-0"
       style={{ background: "var(--color-blush)" }}
     >
       {/* Pulse rings use scoped --hero-pulse-* tokens */}
