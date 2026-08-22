@@ -26,7 +26,7 @@ export function Section({
       className={cn(
         "relative overflow-x-clip",
         snap &&
-          "flex min-h-screen flex-col justify-center min-[768px]:snap-start min-[768px]:snap-always",
+          "flex min-h-screen flex-col justify-center min-[768px]:min-h-[calc(100vh-4rem)] min-[768px]:snap-start min-[768px]:snap-always",
         className
       )}
     >
