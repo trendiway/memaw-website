@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/fire",
+      "destination": "/fire-framework",
+      "permanent": true
+    }
+  ]
+}
