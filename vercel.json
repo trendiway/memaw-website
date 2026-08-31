@@ -6,8 +6,8 @@
       "permanent": true
     },
     {
-      "source": "/x39-testimonials",
-      "destination": "/fire-framework",
+      "source": "/x-39-testimonials",
+      "destination": "/x39#videos",
       "permanent": true
     }
   ]

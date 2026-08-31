@@ -195,7 +195,7 @@ export default function X39Page() {
       </section>
 
       {/* Client voices - video testimonials */}
-      <section className="relative py-24">
+      <section id="videos" className="relative py-24">
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <Reveal>
             <h2 className="heading-display text-center text-3xl font-medium text-cream sm:text-4xl">
